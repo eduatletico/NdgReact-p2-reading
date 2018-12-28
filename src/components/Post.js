@@ -148,11 +148,11 @@ class Post extends Component {
         </CardActions>
         <CardContent>
           <Typography className={classes.pos} color="textSecondary">
-            Comments: {commentCount}
+            {commentCount} comment(s)
           </Typography>
           {comments && comments.length > 0 ? (
             comments.map((comment) => (
-              comment.parentId === post.id
+              comment.parentId === post.id && comment.deleted === false
               ?
                 <Paper key={comment.id} className={classes.control}>
                   <Grid container spacing={24}>

@@ -73,7 +73,7 @@ class Home extends Component {
 
   handleChange = name => event => {
     if (event.target.value !== '') {
-      this.props.history.push(`/category/${event.target.value}`)
+      this.props.history.push(`/${event.target.value}`)
     }
   }
 
@@ -173,7 +173,7 @@ class Home extends Component {
 function mapStateToProps ({ posts, categories }) {
   return {
     posts,
-    postsIds: Object.keys(posts),
+    postsIds: Object.keys(posts).filter((id) => posts[id].deleted === false),
     categories: Object.entries(categories).map(([idx, category]) => category)
   }
 }

@@ -79,7 +79,7 @@ class CategoryPosts extends Component {
     this.setState({order: 'v'})
 
     if (event.target.value !== '') {
-      this.props.history.push(`/category/${event.target.value}`);
+      this.props.history.push(`/${event.target.value}`);
     } else {
       this.props.history.push(`/`)
     }
@@ -187,7 +187,7 @@ function mapStateToProps ({ posts, categories }, props) {
 
   return {
     posts,
-    postsIds: Object.keys(posts).filter(id => posts[id].category === category),
+    postsIds: Object.keys(posts).filter(id => posts[id].category === category).filter((id) => posts[id].deleted === false),
     categories: Object.entries(categories).map(([idx, category]) => category)
   }
 }

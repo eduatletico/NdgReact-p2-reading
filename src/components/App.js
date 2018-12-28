@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Home from './Home'
@@ -22,12 +22,12 @@ class App extends Component {
 
 		      	{this.props.loading === true
 		      		? null
-		        	: <div>
+		        	: <Switch>
 		        			<Route path='/' exact component={Home} />
-		        			<Route path='/post/:id' component={PostPage} />
-		        			<Route path='/category/:category' component={CategoryPosts} />
-		        			<Route path='/new/:id?' component={NewPost} />
-		        		</div>
+		        			<Route path='/new/:id?' exact component={NewPost} />
+		        			<Route path='/:category/:id' exact component={PostPage} />
+		        			<Route path='/:category' exact component={CategoryPosts} />
+		        		</Switch>
 		      	}
 		      </div>
 		    </Fragment>
@@ -36,7 +36,7 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ({ authedUser }) {
+function mapStateToProps () {
 	return {
 		loading: false
 	}

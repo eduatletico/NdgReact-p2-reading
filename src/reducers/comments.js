@@ -23,16 +23,12 @@ export default function posts (state = {}, action) {
 				[action.comment.id]: action.comment
 			}
 		case DISABLE_COMMENT:
-			state[action.comment.id].deleted = action.comment.deleted
-			let newState = {}
-			Object.entries(state).map(([key, obj]) => {
-				if (obj.deleted === false) {
-					newState[key] = obj
-				}
-				return true
-			})
 			return {
-				...newState
+				...state,
+				[action.comment.id]: {
+					...state[action.comment.id],
+					deleted: action.comment.deleted
+				}
 			}
 		default:
 			return state

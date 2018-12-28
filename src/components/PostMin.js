@@ -86,7 +86,7 @@ class PostMin extends Component {
   	}
 
   	const {
-  		id, timestamp, title, category, voteScore, author
+  		id, timestamp, title, category, voteScore, author, commentCount
   	} = post
 
     const subHeader = "At " + formatDate(timestamp) + " - In " + category + " - By " + author
@@ -107,9 +107,12 @@ class PostMin extends Component {
           subheader={subHeader}
         />
         <CardActions>
-          <Link to={`/post/${id}`} className={classes.link}>
+          <Link to={`/${category}/${id}`} className={classes.link}>
             <Button size="small">View more</Button>
           </Link>
+          <Typography className={classes.pos} color="textSecondary">
+            {commentCount} comment(s)
+          </Typography>
           <Typography className={classes.pos} color="textSecondary">
             <IconButton onClick={(e) => this.votePost(e, true)}>
               <ThumbUp />
